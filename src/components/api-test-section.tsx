@@ -11,6 +11,7 @@ import { ChevronDown, Loader2, Zap, Clock, AlertCircle, Coins, CheckCircle2 } fr
 import { CopyButton } from "./copy-button"
 import { decodePaymentRequest, getDecodedToken, type PaymentRequest } from "@cashu/cashu-ts"
 import { useEndpointCache } from "@/lib/api-cache-store"
+import QRCodeSVG from "react-qr-code"
 
 interface ApiResponse {
   status: number
@@ -657,6 +658,15 @@ export function ApiTestSection({ endpoint, domain, api }: ApiTestSectionProps) {
                       </div>
                     )}
 
+                    {/* QR Code */}
+                    <div className="flex justify-center p-4 bg-white rounded-md">
+                      <QRCodeSVG 
+                        value={lightningInvoice}
+                        size={192}
+                        level="M"
+                      />
+                    </div>
+
                     <div className="flex items-start gap-2">
                       <code className="flex-1 bg-muted px-3 py-2 rounded text-xs font-mono break-all border border-border/50">
                         {lightningInvoice}
@@ -1030,6 +1040,17 @@ export function ApiTestSection({ endpoint, domain, api }: ApiTestSectionProps) {
                         )}
                         </div>
                       )}
+
+                      {/* QR Code */}
+                      <div className="flex justify-center pt-2">
+                        <div className="p-4 bg-white rounded-md">
+                          <QRCodeSVG 
+                            value={cashuP2pkHeader || ""}
+                            size={192}
+                            level="M"
+                          />
+                        </div>
+                      </div>
 
                       {/* Raw Payment Request */}
                       <div className="space-y-1.5 pt-2 border-t border-border">
